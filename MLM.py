@@ -3,14 +3,16 @@ import numpy as np
 import util
 
 class MLM(object):
+
     #hiperparametro
     nRefs = 10
+
     #parametros
     refX = []
     refY = []
     B = []
 
-    def __init__(self, nRefs=5):
+    def __init__(self, nRefs=50):
         self.nRefs = nRefs
 
     def treina(self, X, y):
@@ -32,3 +34,8 @@ class MLM(object):
     def classifica(self, X):
         Dx = euclidean_distances(X, self.refX)
         Dy = Dx.dot(self.B)
+
+        Dyh = []
+        for i in range(len(X)):
+            Dyh.append(self.refY[np.argmin(Dy[i])])
+        return Dyh
