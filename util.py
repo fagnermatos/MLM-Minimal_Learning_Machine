@@ -1,7 +1,7 @@
 import numpy as np
 import random
 
-def aletorioRefs(X, y, refs):
+def aleatorioRefs(X, y, refs):
     dados = []
     for i in range(len(y)):
         dados.append((X[i], y[i]))
@@ -17,8 +17,8 @@ def aletorioRefs(X, y, refs):
 
     return Xn[0:refs], yn[0:refs]
 
-def distancia(dado, ref):
-
-    for i in range(len(ref)):
-        np.sqrt((b - a) ** 2)
-
+def binarizar(y):
+    biny = np.zeros((y.shape[0],np.amax(y)+1))
+    for i in range(len(y)):
+        biny[i][y[i]] = 1
+    return biny
