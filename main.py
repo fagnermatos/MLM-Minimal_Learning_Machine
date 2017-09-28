@@ -8,8 +8,6 @@ X = iris.data
 y = util.binarizar(iris.target)
 # print y
 
-
 mlm = MLM()
 mlm.treina(X,y)
-
-
+mlm.classifica(X)

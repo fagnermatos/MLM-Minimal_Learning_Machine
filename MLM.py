@@ -30,5 +30,5 @@ class MLM(object):
         return self
 
     def classifica(self, X):
-        """Em construcao"""
-        return []
+        Dx = euclidean_distances(X, self.refX)
+        Dy = Dx.dot(self.B)
