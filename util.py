@@ -21,4 +21,4 @@ def binarizar(y):
     biny = np.zeros((y.shape[0],np.amax(y)+1))
     for i in range(len(y)):
         biny[i][y[i]] = 1
-    return biny
+    return np.array(biny)

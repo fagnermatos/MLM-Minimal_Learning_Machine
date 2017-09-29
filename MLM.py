@@ -38,4 +38,4 @@ class MLM(object):
         Dyh = []
         for i in range(len(X)):
             Dyh.append(self.refY[np.argmin(Dy[i])])
-        return Dyh
+        return np.array(Dyh)

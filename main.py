@@ -1,3 +1,4 @@
+from sklearn.model_selection import train_test_split
 from sklearn import datasets
 from MLM import MLM
 import numpy as np
@@ -8,15 +9,19 @@ ITERACOES = 20
 iris = datasets.load_iris()
 X = iris.data
 y = util.binarizar(iris.target)
-
 mlm = MLM()
-mlm.treina(X[0:10],y[0:10])
-Dyh = mlm.classifica(X[50:150])
 
 erros = []
 for i in range(ITERACOES):
+
+    Xl, Xt , yl, yt = train_test_split(X, y, test_size=0.2)
+
+    mlm.treina(Xl, yl)
+    Dyh = mlm.classifica(Xt)
+
     errosI = 0
-    for j in range(len(y)):
-        errosI += int(np.array_equal(y,Dyh))
-    erros.append(errosI)
-print np.mean(erros)
+    for j in range(len(yt)):
+        print yt[j], " - ", Dyh[j]
+        errosI += int(not np.array_equal(yt[j],Dyh[j]))
+        erros.append(errosI)
+    print np.mean(erros)
