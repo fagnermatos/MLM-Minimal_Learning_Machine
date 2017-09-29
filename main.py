@@ -21,7 +21,6 @@ for i in range(ITERACOES):
 
     errosI = 0
     for j in range(len(yt)):
-        print yt[j], " - ", Dyh[j]
         errosI += int(not np.array_equal(yt[j],Dyh[j]))
         erros.append(errosI)
-    print np.mean(erros)
+print np.mean(erros)
