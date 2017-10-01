@@ -22,3 +22,12 @@ def binarizar(y):
     for i in range(len(y)):
         biny[i][y[i]] = 1
     return np.array(biny)
+
+def removeDuplicatas(X, y):
+    Xn = [X[0]]
+    yn = [y[0]]
+    for i in range(len(X)):
+        if not np.any(np.equal(Xn, X[i]).all(1)):
+            Xn.append(X[i])
+            yn.append(y[i])
+    return np.array(Xn), np.array(yn)

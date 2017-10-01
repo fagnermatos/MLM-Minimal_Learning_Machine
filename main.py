@@ -5,16 +5,17 @@ import numpy as np
 import util
 
 ITERACOES = 20
+TEST_SIZE = 0.2
 
 iris = datasets.load_iris()
 X = iris.data
 y = util.binarizar(iris.target)
+X, y = util.removeDuplicatas(X, y)
 mlm = MLM()
 
-erros = []
+acertos = []
 for i in range(ITERACOES):
-
-    Xl, Xt , yl, yt = train_test_split(X, y, test_size=0.2)
+    Xl, Xt , yl, yt = train_test_split(X, y, test_size=TEST_SIZE)
 
     mlm.treina(Xl, yl)
     Dyh = mlm.classifica(Xt)
@@ -22,5 +23,6 @@ for i in range(ITERACOES):
     errosI = 0
     for j in range(len(yt)):
         errosI += int(not np.array_equal(yt[j],Dyh[j]))
-        erros.append(errosI)
-print np.mean(erros)
+    acertos.append(1 - errosI/ float(len(yt)))
+print "Total de acertos do MLM: ", np.mean(acertos)*100, "%"
+
